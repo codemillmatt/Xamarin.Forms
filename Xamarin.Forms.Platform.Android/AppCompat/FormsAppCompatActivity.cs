@@ -98,17 +98,17 @@ namespace Xamarin.Forms.Platform.Android
 				RegisterHandlerForDefaultRenderer(typeof(Picker), typeof(AppCompat.PickerRenderer), typeof(PickerRenderer));
 				RegisterHandlerForDefaultRenderer(typeof(CarouselPage), typeof(AppCompat.CarouselPageRenderer), typeof(CarouselPageRenderer));
 
-				if (Forms.Flags.Contains(Flags.FastRenderersExperimental))
+				if (Forms.Flags.Contains(Flags.UseLegacyRenderers))
+				{
+					RegisterHandlerForDefaultRenderer(typeof(Button), typeof(AppCompat.ButtonRenderer), typeof(ButtonRenderer));
+					RegisterHandlerForDefaultRenderer(typeof(Frame), typeof(AppCompat.FrameRenderer), typeof(FrameRenderer));
+				}
+				else
 				{
 					RegisterHandlerForDefaultRenderer(typeof(Button), typeof(FastRenderers.ButtonRenderer), typeof(ButtonRenderer));
 					RegisterHandlerForDefaultRenderer(typeof(Label), typeof(FastRenderers.LabelRenderer), typeof(LabelRenderer));
 					RegisterHandlerForDefaultRenderer(typeof(Image), typeof(FastRenderers.ImageRenderer), typeof(ImageRenderer));
 					RegisterHandlerForDefaultRenderer(typeof(Frame), typeof(FastRenderers.FrameRenderer), typeof(FrameRenderer));
-				}
-				else
-				{
-					RegisterHandlerForDefaultRenderer(typeof(Button), typeof(AppCompat.ButtonRenderer), typeof(ButtonRenderer));
-					RegisterHandlerForDefaultRenderer(typeof(Frame), typeof(AppCompat.FrameRenderer), typeof(FrameRenderer));
 				}
 
 				_renderersAdded = true;
